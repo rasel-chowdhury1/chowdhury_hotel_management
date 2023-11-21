@@ -1,0 +1,70 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+<!-- ========================= SECTION PAGETOP ========================= -->
+<section class="section-pagetop mt-3 bg">
+  <div class="container">
+    <h2 class="title-page">Our Hotel</h2>
+  </div>
+  <!-- container //  -->
+</section>
+<!-- ========================= SECTION INTRO END// ========================= -->
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+  <div class="container">
+    <div class="row">
+      <!-- col.// -->
+      <main class="col-md-12">
+        <header class="border-bottom mb-4 pb-3">
+          <div class="form-inline">
+            <span class="mr-md-auto">{{hotels|length}} Hotels found </span>
+          </div>
+        </header>
+        <!-- sect-heading -->
+
+        <div class="row">
+          {% for hotel in hotels %}
+
+          <div class="col-md-6">
+            <div class="card mb-3" style="max-width: 540px">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img
+                    src="{{hotel.image.url}}"
+                    class="img-fluid rounded-start"
+                    alt="hotel_image"
+                  />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{hotel.hotel_name}}</h5>
+                    <p class="card-text">{{hotel.description}}</p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <p class="text-black">{{hotel.address}}</p>
+                        <h6 class="text-warning">
+                          Review : {{hotel.rating}} out of 5
+                        </h6>
+                      </div>
+                    </div>
+                    <a
+                      href="{% url 'hotel_details' hotel.id %}"
+                      class="btn btn-block bg-success bg-gradient"
+                      >View Details</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <!-- row end.// -->
+      </main>
+      <!-- col.// -->
+    </div>
+  </div>
+  <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock body %}
